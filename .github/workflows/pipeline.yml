@@ -21,6 +21,9 @@ jobs:
       - name: Build Magnolia Docker Image
         run: mvn -B docker:build
 
+      - name: debug github context info
+        run: echo "actor=${{ github.actor }} repo=${{github.repository}} repo_owner=${{github.repository_owner}} "
+
       - name: Push Magnolia Docker Image
         run: mvn -B -Ddocker.username=${{secrets.PACKAGES_USER}} -Ddocker.password=${{secrets.PACKAGES_TOKEN}} -Dgithub.registry=${{github.actor}} docker:push
 
